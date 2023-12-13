@@ -1,0 +1,90 @@
+version: '3'
+
+services:
+  dummy-api1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dummy-api1
+    restart: always
+
+    networks:
+      - traefik-proxy
+    labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik-proxy"
+        - "traefik.http.routers.dummy-api1.entrypoints=http"
+        - "traefik.http.routers.dummy-api1.rule=Host(`dummy-api1.cloud.local`)"
+        - "traefik.http.middlewares.dummy-api1-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.dummy-api1.middlewares=dummy-api1-https-redirect"
+        - "traefik.http.routers.dummy-api1-secure.entrypoints=https"
+        - "traefik.http.routers.dummy-api1-secure.rule=Host(`dummy-api1.cloud.local`)"
+        - "traefik.http.routers.dummy-api1-secure.tls=true"
+        - "traefik.http.services.dummy-api1-secure.loadbalancer.server.port=3000"
+
+  dummy-api2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dummy-api2
+    restart: always
+
+    networks:
+      - traefik-proxy
+    labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik-proxy"
+        - "traefik.http.routers.dummy-api2.entrypoints=http"
+        - "traefik.http.routers.dummy-api2.rule=Host(`dummy-api2.cloud.local`)"
+        - "traefik.http.middlewares.dummy-api2-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.dummy-api2.middlewares=dummy-api2-https-redirect"
+        - "traefik.http.routers.dummy-api2-secure.entrypoints=https"
+        - "traefik.http.routers.dummy-api2-secure.rule=Host(`dummy-api2.cloud.local`)"
+        - "traefik.http.routers.dummy-api2-secure.tls=true"
+        - "traefik.http.services.dummy-api2-secure.loadbalancer.server.port=3000"
+
+  dummy-api3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dummy-api3
+    restart: always
+
+    networks:
+      - traefik-proxy
+    labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik-proxy"
+        - "traefik.http.routers.dummy-api3.entrypoints=http"
+        - "traefik.http.routers.dummy-api3.rule=Host(`dummy-api3.cloud.local`)"
+        - "traefik.http.middlewares.dummy-api3-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.dummy-api3.middlewares=dummy-api3-https-redirect"
+        - "traefik.http.routers.dummy-api3-secure.entrypoints=https"
+        - "traefik.http.routers.dummy-api3-secure.rule=Host(`dummy-api3.cloud.local`)"
+        - "traefik.http.routers.dummy-api3-secure.tls=true"
+        - "traefik.http.services.dummy-api3-secure.loadbalancer.server.port=3000"
+
+  dummy-api4:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dummy-api4
+    restart: always
+
+    networks:
+      - traefik-proxy
+    labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik-proxy"
+        - "traefik.http.routers.dummy-api4.entrypoints=http"
+        - "traefik.http.routers.dummy-api4.rule=Host(`dummy-api4.cloud.local`)"
+        - "traefik.http.middlewares.dummy-api4-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.dummy-api4.middlewares=dummy-api4-https-redirect"
+        - "traefik.http.routers.dummy-api4-secure.entrypoints=https"
+        - "traefik.http.routers.dummy-api4-secure.rule=Host(`dummy-api4.cloud.local`)"
+        - "traefik.http.routers.dummy-api4-secure.tls=true"
+        - "traefik.http.services.dummy-api4-secure.loadbalancer.server.port=3000"
+
+networks:
+  traefik-proxy:
+    external: true
