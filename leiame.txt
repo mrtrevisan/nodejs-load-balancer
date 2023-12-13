@@ -1,0 +1,13 @@
+Grupo:
+Alfredo Cossetin Neto
+Mauro Roberto Machado Trevisan
+Pedro Henrique da Silva Hinerasky
+Ramon Godoy Izidoro
+
+A função de rede escolhida foi Load-Balancer;
+O algorítmo de escalonamento foi Random-Choice;
+O trabalho foi feito em Javascript, disponível em:
+
+https://github.com/mrtrevisan/nodejs-load-balancer
+
+Obrigado!
