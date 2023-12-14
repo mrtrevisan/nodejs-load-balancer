@@ -5,7 +5,9 @@ const https = require('https');
 const app = express();
 
 app.get('/', (req, res) => {
-    const url = 'https://dummy-api1.cloud.local/'
+    const host = 'dummy-api1';
+
+    const url = 'http://' + host + ':3000';
 
     axios.get(url, {
         httpsAgent: new https.Agent({ rejectUnauthorized: false })

@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  load-balancer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: load-balancer
+    restart: always
+
+    networks:
+      - traefik-proxy
+    labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik-proxy"
+        - "traefik.http.routers.load-balancer.entrypoints=http"
+        - "traefik.http.routers.load-balancer.rule=Host(`load-balancer.cloud.local`)"
+        - "traefik.http.middlewares.load-balancer-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.load-balancer.middlewares=load-balancer-https-redirect"
+        - "traefik.http.routers.load-balancer-secure.entrypoints=https"
+        - "traefik.http.routers.load-balancer-secure.rule=Host(`load-balancer.cloud.local`)"
+        - "traefik.http.routers.load-balancer-secure.tls=true"
+        - "traefik.http.services.load-balancer-secure.loadbalancer.server.port=3000"
+
+networks:
+  traefik-proxy:
+    external: true

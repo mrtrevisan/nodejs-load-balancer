@@ -5,25 +5,26 @@ const https = require('https');
 const app = express();
 
 app.get('/', (req, res) => {
-    const urls = [
-        'https://dummy-api1.cloud.local/',
-        'https://dummy-api2.cloud.local/',
-        'https://dummy-api3.cloud.local/',
-        'https://dummy-api4.cloud.local/'
+    const hosts = [
+      'dummy-api1',
+      'dummy-api2',
+      'dummy-api3',
+      'dummy-api4'
     ];
 
     // Random num from 0 to 3:
     const idx = Math.floor(Math.random() * 4);
-    console.log(`Redirecionando para api ${idx}`);
+    console.log(`Redirecionando para o host ${idx +1}`);
 
-    axios.get(urls[idx], {
+    var url = 'http://' + hosts[idx] + ':3000';
+    axios.get(url, {
         httpsAgent: new https.Agent({ rejectUnauthorized: false })
     })
     .then(response => {
       res.send(response.data);
     })
     .catch(error => {
-      console.error(`Erro ao obter dados da API: ${idx}`, error);
+      console.error(`Erro ao obter dados da API: ${idx +1}`, error);
       res.status(500).json({ error: 'Erro ao obter dados da API'});
     });
 });
