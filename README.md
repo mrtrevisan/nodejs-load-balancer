@@ -24,7 +24,8 @@ dummy-api3.cloud.local
 dummy-api4.cloud.local
 ```
 
-* Obs.: É necessário usar traefik para gerenciamento de domínios.
+* Obs.: É necessário estar rodando a rede traefik-proxy: <br/>
+<a href="https://github.com/mrtrevisan/stack-containers">github.com/mrtrevisan/stack-containers</a>
 
 * Adicione os domínios ao arquivo /etc/hosts:
 ```
