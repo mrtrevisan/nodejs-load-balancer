@@ -4,7 +4,8 @@ Load balancer feito em nodejs com express e axios, usando docker compose.
 # Instalação:
 
 * Ceritifique-se de ter instalado:
-    - NodeJS (com yarn);
+    - NodeJS;
+    - Yarn;
     - Docker;
 
 * Clone o repositório
